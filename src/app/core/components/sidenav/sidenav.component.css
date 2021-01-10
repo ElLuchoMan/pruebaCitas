@@ -1,0 +1,5 @@
+
+mat-nav-list a:hover,
+mat-nav-list a:active {
+  color: var(--azul-claro2);
+}

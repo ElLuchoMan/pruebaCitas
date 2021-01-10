@@ -1,0 +1,70 @@
+<button class="m-auto" mat-button routerLink="/usuarios/guardar" [ngStyle]="{color: 'var(--azul-claro)'}">
+    <mat-icon>add</mat-icon> Crear Usuario
+</button>
+<div class="mb-4" fxLayout="column">
+    <div class="px-1 px-sm-5 list-button" fxLayoutAlign="space-between">
+        <mat-form-field>
+            <input matInput type="text" (keyup)="doFilter($event)" placeholder="buscar..." />
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="datasource" matSort class="mat-elevation-z8">
+        <caption style="display: none;">Usuarios</caption>
+        <ng-container matColumnDef="idUsuario">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-sm> Id usuario </th>
+            <td mat-cell *matCellDef="let doc" fxHide.lt-sm> {{doc.idUsuario}} </td>
+        </ng-container>
+        <ng-container matColumnDef="identificacion">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Identificación </th>
+            <td mat-cell *matCellDef="let doc"> {{doc.identificacion}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let doc"> {{doc.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="apellido1">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+            <td mat-cell *matCellDef="let doc">
+                {{doc.apellido1 + ' ' + doc.apellido2}} </td>
+        </ng-container>
+        <ng-container matColumnDef="telefonoContacto">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono celular </th>
+            <td mat-cell *matCellDef="let doc">
+                {{formatearTelefono(doc.telefonoContacto)}}
+            </td>
+        </ng-container>
+		 <ng-container matColumnDef="facultad">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Facultad </th>
+            <td mat-cell *matCellDef="let doc">
+                {{doc.facultad}} </td>
+        </ng-container>
+		<ng-container matColumnDef="proyectoCurricular">
+            <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header> Proyecto Curricular </th>
+            <td mat-cell *matCellDef="let doc">
+                {{doc.proyectoCurricular}} </td>
+        </ng-container>
+		
+
+        <!-- botones para editar -->
+        <ng-container matColumnDef="historiaClinica">
+            <th scope="col" mat-header-cell *matHeaderCellDef> Historia Clinica </th>
+            <td mat-cell *matCellDef="let doc">
+                <div>
+                    <button mat-icon-button color="primary" [routerLink]="['/usuarios/guardar/'+doc.idUsuario]"
+                        matTooltip="Editar">
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+        <!-- elementos necesarios para el mat-table de angular material-->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!-- paginador de angular material-->
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 30, 50, 100]" class="mat-elevation-z8">
+    </mat-paginator>
+</div>
+
+

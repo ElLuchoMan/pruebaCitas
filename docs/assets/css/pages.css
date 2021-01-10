@@ -1,0 +1,18 @@
+@import "./header-styles.css";
+
+header {
+  filter: grayscale(0.4);
+  -webkit-filter: grayscale(0.4);
+}
+
+ .list-button mat-form-field,
+.list-button button {
+  min-width: 30%;
+}
+
+@media (min-width: 768px) {
+  .fit-content {
+    max-width: 60vw !important;
+  }
+}
+ 

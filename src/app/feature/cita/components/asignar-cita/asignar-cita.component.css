@@ -1,0 +1,12 @@
+ .select-group {
+    width: 94% !important;
+  } 
+
+.toggle-picker {
+  cursor: pointer;
+}
+
+.time-hint {
+  color: #fff;
+  font-weight: 400;
+}

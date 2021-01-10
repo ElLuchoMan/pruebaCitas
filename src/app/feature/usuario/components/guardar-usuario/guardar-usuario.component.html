@@ -1,0 +1,80 @@
+<section>
+    <form autocomplete="off" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center">
+        <mat-card class="mat-elevation-z8 py-4" fxFlex="80" fxFlex.lt-sm="100">
+            <mat-card-content class="form-group p-2" fxLayout="column" fxLayoutAlign="center center">
+                <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Código asignado</mat-label>
+                        <input matInput formControlName="idPersona" />
+                        <mat-hint>El código es autoasignado por el sistema</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Número de Identificación</mat-label>
+                        <input matInput placeholder="Ej. 1017251545" formControlName="identificacion" />
+                        <mat-hint>Ingrese el número de documento (entre 7 y 10 caracteres/
+                            actual:{{usuarioForm.controls.identificacion.value.length}})</mat-hint>
+                        <mat-error>
+                            {{usuarioForm.controls.identificacion.value.length === 0? 'La identificacion es obligatoria':
+                            'Ingresa una identificacion entre 7 y 10 caracteres (actual:' + usuarioForm.controls.identificacion.value.length + ')'}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Ej. Mario" formControlName="nombre" />
+                        <mat-hint>Ingrese el nombre sin apellidos</mat-hint>
+                        <mat-error>El nombre es obligatorio</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Primer apellido</mat-label>
+                        <input matInput placeholder="Ej. Ruiz" formControlName="apellido1" />
+                        <mat-hint>Ingrese el primer apellido</mat-hint>
+                        <mat-error>El primer apellido es obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Segundo apellido</mat-label>
+                        <input matInput placeholder="Ej. Bedoya" formControlName="apellido2" />
+                        <mat-hint>Ingrese el segundo apellido (dato opcional)</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Teléfono contacto</mat-label>
+                        <input matInput placeholder="Ej. 3007855782" formControlName="telefonoContacto" />
+                        <mat-hint>Ingrese el teléfono (fijo o celular)</mat-hint>
+                        <mat-error>El teléfono es un dato obligatorio de 7 o 10 caracteres (actual:{{usuarioForm.controls.telefonoContacto.value.length}})</mat-error>
+                    </mat-form-field>
+                </div>
+			 <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Facultad</mat-label>
+                        <input matInput placeholder="Ej. Ingeniería" formControlName="facultad" />
+                        <mat-hint>Ingrese la facultad</mat-hint>
+                        <mat-error>La facultad es obligatoria</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Proyecto Curricular</mat-label>
+                        <input matInput placeholder="Ej. Ingeniería de sistemas" formControlName="proyectoCurricular" />
+                        <mat-hint>Ingrese el proyecto curricular</mat-hint>
+                        <mat-error>El proyecto es obligatorio</mat-error>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+
+            <p class="invalid-form" *ngIf="usuarioForm.invalid">
+                *Debe completar todos los espacios*
+            </p>
+            <mat-card-actions class="form-action mt-4" fxLayoutAlign="center" fxLayout.lt-sm="column">
+                <button class="card-button m-2" type="button" mat-raised-button (click)="goBack()" *ngIf="!isWaiting">
+                    <mat-icon>arrow_back</mat-icon>Regresar al listado
+                </button>
+                <button class="card-button m-2" type="submit" mat-raised-button [disabled]="!usuarioForm.valid"
+                    *ngIf="!isWaiting">
+                    <mat-icon>save</mat-icon> Guardar Usuario
+                </button>
+                <mat-spinner *ngIf="isWaiting"></mat-spinner>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</section>

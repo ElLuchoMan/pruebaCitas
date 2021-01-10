@@ -1,0 +1,31 @@
+.expanded {
+  color: var(--azul-claro);
+}
+
+.logo {
+  cursor: pointer;
+  background-image: url("/assets/img/brand-logo.png");
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+
+/*
+  * ESTILOS DEL MENU
+  */
+mat-list-item mat-icon,
+mat-list-item a {
+  color: var(--azul-claro);
+  font-weight: 200;
+  
+}
+
+mat-list-item a {
+  text-decoration: none;
+  font-size: 1.2rem !important;
+}
+
+mat-list-item:hover,
+mat-list-item:active {
+  border-bottom: 3px solid var(--azul-claro2);
+}

@@ -1,0 +1,50 @@
+<section>
+    <form autocomplete="off" [formGroup]="tipoForm" (ngSubmit)="onSubmit()" fxLayoutAlign="center">
+        <mat-card class="mat-elevation-z8 py-4" fxFlex="80" fxFlex.lt-sm="100">
+            <mat-card-content class="form-group p-2" fxLayout="column" fxLayoutAlign="center center">
+                <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Código asignado</mat-label>
+                        <input matInput formControlName="idTipoCita" />
+                        <mat-hint>El código es autoasignado por el sistema</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="form-group" fxLayoutAlign="space-between" fxLayout="row wrap">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre del tipo de cita</mat-label>
+                        <input matInput placeholder="Ej. Medicina General" formControlName="nombre" />
+                        <mat-error>El nombre es obligatorio</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sede</mat-label>
+                        <input matInput placeholder="Ej. Calle 40" formControlName="sede" />
+                        <mat-error>La sede es obligatoria</mat-error>
+                    </mat-form-field>
+                </div>
+				
+                <div class="form-group" fxLayoutAlign="center">
+                    <mat-form-field fxFlex appearance="outline">
+                        <mat-label>Descripción breve</mat-label>
+                        <textarea matInput placeholder="Ej. Cita donde se revisan aspectos generales"
+                            formControlName="descripcionBreve"></textarea>
+                        <mat-icon matPrefix>message</mat-icon>
+                        <mat-error>Ingrese una descripción válida</mat-error>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+
+            <p class="invalid-form" *ngIf="tipoForm.invalid">
+                *Debe completar todos los espacios*
+            </p>
+            <mat-card-actions class="form-action mt-4" fxLayoutAlign="center" fxLayout.lt-sm="column">
+                <button class="card-button m-2" type="button" mat-raised-button (click)="goBack()"  *ngIf="!isWaiting">
+                    <mat-icon>arrow_back</mat-icon>Regresar al listado
+                </button>
+                <button class="card-button m-2" type="submit" mat-raised-button  [disabled]="!tipoForm.valid" *ngIf="!isWaiting">
+                    <mat-icon>save</mat-icon> Guardar Tipo
+                </button>
+                <mat-spinner *ngIf="isWaiting"></mat-spinner>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</section>
